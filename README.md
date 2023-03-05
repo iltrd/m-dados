@@ -16,7 +16,7 @@ Você pode usar o Docker para configurar um banco de dados PostgreSQL com as con
 Para iniciar um contêiner PostgreSQL com Docker, execute o seguinte comando:
 
 ```
-docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+docker run --name postgres -e POSTGRES_PASSWORD=1404 -p 5432:5432 -d postgres
 ```
 Este comando iniciará um contêiner PostgreSQL com a senha 1404 e exporá a porta 5432. O nome do banco de dados padrão é postgres.
 
