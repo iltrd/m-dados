@@ -1,12 +1,25 @@
 version: '3'
+
 services:
-  db:
+  postgres:
     image: postgres
-    environment:
-      POSTGRES_DB: testdb
-      POSTGRES_USER: testuser
-      POSTGRES_PASSWORD: testpassword
-    volumes:
-      - ./initdb:/docker-entrypoint-initdb.d/
     ports:
-      - "5432:5432"
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  app:
+    image: golang
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    command: go run main.go
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 80:80
