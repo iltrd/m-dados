@@ -9,7 +9,9 @@ import (
 	"os"
 	"strings"
 	"unicode"
-
+	 
+	"github.com/iltrd/manipular-dados/database"
+	
 	"github.com/go-playground/validator"
 	_ "github.com/lib/pq"
 )
@@ -26,8 +28,8 @@ type Record struct {
 }
 
 func main() {
-	InsertData(db, data)
-	CleanData(db, data)
+	InsertData(db *sql.DB, data [][]string) error
+	CleanData(data)
 
 	// Abrir arquivo
 	f, err := os.Open("base_teste.txt")
@@ -94,28 +96,6 @@ func InsertData(db *sql.DB, data [][]string) error {
 	}
 
 	return nil
-}
-
-func CleanData(data [][]string) [][]string {
-	var cleanedData [][]string
-
-	for _, record := range data {
-		cleanedRecord := make([]string, len(record))
-		for i, value := range record {
-			cleanedValue := strings.Map(func(r rune) rune {
-				if unicode.Is(unicode.Mn, r) {
-					return -1
-				}
-				return unicode.ToLower(r)
-			}, value)
-
-			cleanedRecord[i] = cleanedValue
-		}
-
-		cleanedData = append(cleanedData, cleanedRecord)
-	}
-
-	return cleanedData
 }
 
 func ValidateRecords(data [][]string) error {

@@ -1,4 +1,4 @@
-module manipular-dados
+module github.com/iltrd/manipular-dados
 
 go 1.19
 
