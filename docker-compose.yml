@@ -4,22 +4,24 @@ services:
   postgres:
     image: postgres
     ports:
-      - 5431:5432
-    environment:
-      POSTGRES_USER:  postgres
-      POSTGRES_PASSWORD: 1404 
-
-  app:
-    image: golang
-    working_dir: /app
-    volumes:
-      - .:/app
+      - 5432:5432
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1404
-    command: go run main.go
-
+      POSTGRES_PASSWORD: postgres
   pgadmin:
     image: dpage/pgadmin4
     ports:
       - 80:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: password
+  app:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
