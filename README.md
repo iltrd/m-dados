@@ -3,8 +3,12 @@
 
 
 # Manipular dados 
-Serviço criação para ler arquivo csv/txt e manipular dados 
+Serviço criação para ler arquivo csv/txt, valida os dados e  os inseri no banco de dados PostgreSQL. O código executa as seguintes tarefas. 
 
+1 - lê os dados do arquivo. 
+2 - Limpa os dados cortando os espaços em branco de cada campo.
+3 - Inseri os dados limpos em um banco de dados 
+4 - Valida cada registro usando uma struct e um pacote validador. 
 
 ## Pacotes utilizados 
 
