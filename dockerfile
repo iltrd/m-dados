@@ -1,14 +1,15 @@
 FROM golang:1.16-alpine
 
 # Define o diretório de trabalho
-WORKDIR /app
+WORKDIR docker build -t meu-app "https://github.com/iltrd/manipular-dados"
+
 
 # Copia o arquivo go.mod e go.sum
-COPY go.mod .
-COPY go.sum .
-
+COPY go.mod go.sum ./
 # Baixa as dependências
 RUN go mod download
+RUN go mod download golang.org/x/text@v0.3.8
+
 
 # Copia o restante do código
 COPY . .
