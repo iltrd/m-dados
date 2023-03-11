@@ -20,8 +20,18 @@ Serviço criação para ler arquivo csv/txt e manipular dados
 - `github.com/go-playground/validator` fornece um pacote de validação 
 
 
-O código define uma estrutura chamada Record que apresente um único registro do arquivo csv/txt. Cada campo na struct possui uma marca de validação que especifica as regras de validação para esse campo. As regras de validação são defnidas usando a função validator. 
+O código define uma estrutura chamada Record que apresente um único registro do arquivo csv/txt. Cada campo na struct possui uma marca de validação que especifica as regras de validaçã para o campo. As regras são dfinidas através da função  `validator`. 
 
 A função `CleanData` remove espaços em branco iniciais e finais de cada campo nos dados. 
 
 A função `InsertData` insere os dados em um banco de dados PostgreSQL.
+
+A função `ValidateRecords` valida cada registro nos dados utilizando a função `validator`
+
+A função `main` lê os dados  do arquivo, inseri no banco de dados  e valida os campos. Se qualquer uma dessas etapas falhar, o programa registrará uma mensagem de erro e será encerrado. 
+
+## Para executar o programa 
+
+``` 
+docker-compose up 
+```
